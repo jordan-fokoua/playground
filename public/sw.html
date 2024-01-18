@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Service Worker Test Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        margin: 0 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      button#blockButton {
+        background-color: #f44336;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Service Worker</h1>
+      <button id="allowButton">Allow</button>
+      <button id="blockButton">Block</button>
+    </div>
+    <script src="main.js"></script>
+
+    <script>
+      !(function (a, b, c, d, e, f) {
+        a.ddjskey = e;
+        a.ddoptions = f || null;
+        var m = b.createElement(c),
+          n = b.getElementsByTagName(c)[0];
+        (m.async = 1), (m.src = d), n.parentNode.insertBefore(m, n);
+      })(
+        window,
+        document,
+        'script',
+        'https://js.datadome.co/tags.js',
+        'C1EDA83B84FD6C15787D04CA5166FB',
+        {
+          testingMode: true,
+          ajaxListenerPath: [document.location.origin],
+          abortAsyncOnChallengeDisplay: false,
+          allowHtmlContentTypeOnCaptcha: true,
+        }
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "node-module-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@datadome/node-module": "file:../../NodeModule/datadome-node-module-1.4.4.tgz",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "nodemon": "^3.0.1"
+  }
+}

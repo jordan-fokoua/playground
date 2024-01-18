@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>XHR Tag Test Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        margin: 0 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      button#blockButton {
+        background-color: #f44336;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>XHR Tag Sample</h1>
+      <button id="allowButton">Allow</button>
+      <button id="blockButton">Block</button>
+    </div>
+
+    <script>
+      window.ddCaptchaOptions = {
+        ajaxListenerPath: true,
+        allowHtmlContentTypeOnCaptcha: true,
+      };
+    </script>
+    <script src="https://js.captcha-display.com/xhr_tag.js"></script>
+
+    <script>
+      var allowButton = document.getElementById('allowButton');
+      var blockButton = document.getElementById('blockButton');
+
+      allowButton.addEventListener('click', function () {
+        makeApiCall('allow');
+      });
+
+      blockButton.addEventListener('click', function () {
+        makeApiCall('block');
+      });
+
+      function makeApiCall(action) {
+        console.log('🚀 ~ file: index.html:87 ~ makeApiCall ~ action:', action);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', document.location.origin + '/api/' + action, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log('API call successful');
+          }
+        };
+        xhr.send(JSON.stringify({ action: action }));
+      }
+    </script>
+  </body>
+</html>

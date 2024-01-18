@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Playground 🚀</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/iframe.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <h1>JS Tag Playground 🚀</h1>
+
+    <nav class="navigation-menu">
+      <ul>
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/csp">CSP</a></li>
+        <li><a href="/iframe">Iframe</a></li>
+        <!-- <li><a href="/service-worker">Service worker</a></li> -->
+      </ul>
+    </nav>
+
+    <div class="sub-container">
+      <input type="text" id="urlInput" placeholder="Enter URL here" style="width: 90%" />
+      <button onclick="openURL()">Open</button>
+    </div>
+
+    <div class="sub-container">
+      <iframe id="urlFrame"></iframe>
+    </div>
+  </div>
+
+  <script src='js/menu.js'></script>
+  <script src='js/iframe.js'></script>
+</body>
+
+</html>

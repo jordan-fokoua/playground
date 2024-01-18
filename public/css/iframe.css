@@ -1,0 +1,35 @@
+#urlInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.sub-container button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sub-container button:hover {
+  background-color: #45a049;
+}
+
+iframe {
+  width: 100vh;
+  height: 50vh;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sub-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
