@@ -11,17 +11,17 @@ const port = 3001;
 
 const datadomeClient = new DataDome('rDFN3kWHveXOLop', 'api.datadome.co');
 
-// app.use(function (req, resp, next) {
-//   datadomeClient.authCallback(
-//     req,
-//     resp,
-//     function () {
-//       next();
-//     },
-//     function () {},
-//     { nonce: resp.locals.nonce }
-//   );
-// });
+const datadomeMiddleware = (req, resp, next) => {
+  datadomeClient.authCallback(
+    req,
+    resp,
+    function () {
+      next();
+    },
+    function () {},
+    { nonce: resp.locals.nonce }
+  );
+};
 
 app.use(express.json());
 
@@ -67,21 +67,11 @@ app.get('/cookie_injection', (req, res) => {
   });
 });
 
-app.get('/js/tags.js', (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'js', 'tags.js');
+app.post('/api/not_monitored', defaultRequest);
 
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      return res.status(500).send('An error occurred');
-    }
+app.post('/api/allow', datadomeMiddleware, defaultRequest);
 
-    res.send(data);
-  });
-});
-
-app.post('/api/allow', defaultRequest);
-
-app.post('/api/block', defaultRequest);
+app.post('/api/block', datadomeMiddleware, defaultRequest);
 
 const server = http.createServer(app);
 

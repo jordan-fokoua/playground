@@ -1,22 +1,25 @@
 const path = require('path');
 const fs = require('fs');
 const { injectNonce } = require('./utils/nonce');
+const { injectTagURL } = require('./utils/tags');
 
 const defaultController = (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'index.html');
+  const { tag } = req.query;
+  const filePath = path.join(__dirname, 'public', 'home.html');
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       return res.status(500).send('An error occurred');
     }
+    let html = injectTagURL(data, tag);
 
     if (res.locals.nonce) {
       const nonce = res.locals.nonce;
-      const html = injectNonce(nonce, data);
+      html = injectNonce(nonce, html);
       return res.send(html);
     }
 
-    return res.send(data);
+    return res.send(html);
   });
 };
 
